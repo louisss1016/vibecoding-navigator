@@ -1,10 +1,12 @@
 <div align="center">
 
-# 🧭 Vibecoding Navigator
+<img src="docs/assets/logo.png" alt="Vibecoding Navigator" width="480">
 
-**一套让 AI 写代码不翻车的全流程导航 Skill**
+**让 AI 写代码不翻车的全流程导航 Skill**
 
-*代码廉价，判断昂贵。* —— AI 几分钟能生成几百行代码，但"用户到底要什么、怎么证明这次改对了、错了回退到哪一步、上线之后出事谁管"，这些判断不能外包。
+> 代码廉价，判断昂贵。AI 几分钟能生成几百行代码，但"要什么、怎么证明改对了、错了回哪、上线出事谁管"——这些判断不能外包。
+
+<br>
 
 ![version](https://img.shields.io/badge/version-2.4.0-2563eb?style=flat-square)
 ![files](https://img.shields.io/badge/files-152-059669?style=flat-square)
@@ -19,14 +21,18 @@
 
 ## 📌 这是什么
 
-**Vibecoding Navigator** 不是教你写代码的 Skill，而是教你的 coding agent **怎么把项目从想法推到上线而不翻车**的流程基础设施。它把一次 vibecoding 拆成三段确定性流程，外加一个可审计的执行层：
+**Vibecoding Navigator** 不是教你写代码的 Skill，而是教你的 coding agent **怎么把项目从想法推到上线而不翻车**的流程基础设施。
 
-- **前期 Preflight** —— 把需求、架构、技术选型钉死，翻车成本最低的阶段做最重的事
-- **中期 In-flight** —— 每轮一个最小纵向切片，先写失败测试，验证通过才 commit
-- **后期 Postflight** —— 五维评测 + 机器可读 golden cases + 七项自动门禁，没证据的"完成"是幻觉
-- **执行层** —— 编排层派工单 → 子 agent 按 specialist 路由干活 → 五要素回报，缺一即未完成
+它把一次 vibecoding 拆成三段确定性流程，外加一个可审计的执行层：
 
-适配 Claude Code / Codex / CodeBuddy / WorkBuddy 等一切支持 Agent Skill 的宿主。
+| 阶段 | 做什么 | 翻车成本 |
+|---|---|---|
+| **① 前期 Preflight** | 把需求、架构、技术选型钉死 | **最低**——所以做最重 |
+| **② 中期 In-flight** | 每轮一个最小纵向切片，先写失败测试，验证通过才 commit | 中——错了能回滚 |
+| **③ 后期 Postflight** | 五维评测 + 机器可读 golden cases + 七项自动门禁 | **最高**——所以做最严 |
+| **执行层** | 编排层派工单 → 子 agent 按 specialist 路由干活 → 五要素回报 | — |
+
+> 适配 Claude Code / Codex / OpenCode / CodeBuddy / WorkBuddy 等一切支持 Agent Skill 的宿主。
 
 ---
 
@@ -34,12 +40,12 @@
 
 Vibecoding 的翻车几乎总是同四种死法。这个 Skill 对每种都有确定的答案：
 
-| 死法 | 典型症状 | 本 Skill 的答案 |
-|---|---|---|
-| **需求没想清楚就开工** | 反复返工，AI 在模糊需求上自由发挥 | `questioning-rules` 逐个反问 + MVP 定义 + DoR/DoD 两张 checklist |
-| **切片太大，一次做不完** | 无法验证、无法回滚，错了一步全盘重来 | 最小纵向切片 + 失败测试先行 + 每个切片独立 commit |
-| **AI 说"完成了"无法验证** | 幻觉完成、happy path 一把梭、带病上线 | 五要素回报 + 证据落盘 + 对抗性三视角审查 + 五维评测 |
-| **上线之后没人管** | 出了事不知道找谁、怎么回滚、怎么复盘 | Go/No-Go 准入 + Cutover 切换 + Incident 六步 + Runbook 体系 |
+| | 💀 死法 | 😵 典型症状 | ✅ 本 Skill 的答案 |
+|---|---|---|---|
+| 1 | **需求没想清楚就开工** | 反复返工，AI 在模糊需求上自由发挥 | `questioning-rules` 逐个反问 + MVP 定义 + DoR/DoD 两张 checklist |
+| 2 | **切片太大，一次做不完** | 无法验证、无法回滚，错了一步全盘重来 | 最小纵向切片 + 失败测试先行 + 每个切片独立 commit |
+| 3 | **AI 说"完成了"无法验证** | 幻觉完成、happy path 一把梭、带病上线 | 五要素回报 + 证据落盘 + 对抗性三视角审查 + 五维评测 |
+| 4 | **上线之后没人管** | 出了事不知道找谁、怎么回滚、怎么复盘 | Go/No-Go 准入 + Cutover 切换 + Incident 六步 + Runbook 体系 |
 
 ---
 
@@ -84,7 +90,7 @@ flowchart TB
     style P4 fill:#3b0764,stroke:#a855f7,color:#e5e7eb
 ```
 
-三层职责，边界清晰：
+### 三层职责，边界清晰
 
 | 层 | 所有权 | 核心文件 |
 |---|---|---|
@@ -112,19 +118,19 @@ flowchart TB
 ```
 vibecoding-navigator/
 ├── README.md                   # 本文件：项目门面
-├── SKILL.md                     # 入口：六条铁律 + 路由表 + 新项目七步
-├── CHANGELOG.md                 # 版本演进记录（含真实冒烟记录）
-├── INSTALL.md                   # 五平台安装 + git 升级 + 兼容性分层说明
-├── VERSION                      # 当前版本号（与 frontmatter / CHANGELOG 一致）
-├── LICENSE                      # MIT
-├── .github/workflows/           # CI：push/PR 自动跑路由测试 + 版本一致性
-├── docs/                        # 执行层协议与门禁（5 个文件）
-│   ├── execution-protocol.md        # 派工单六项 / 五要素回报 / 并行与仲裁
-│   ├── ownership-matrix.md          # 多专家冲突所有权矩阵
-│   ├── evidence-format.md           # 证据格式与落盘规范
-│   ├── stack-routing.md             # 技术栈路由唯一事实源
-│   └── quickstart.md                # 30 分钟端到端 walkthrough
-├── references/                  # 三段流程方法论（20 个文件）
+├── SKILL.md                    # 入口：六条铁律 + 路由表 + 新项目七步
+├── CHANGELOG.md                # 版本演进记录（含真实冒烟记录）
+├── INSTALL.md                  # 五平台安装 + git 升级 + 兼容性分层说明
+├── VERSION                     # 当前版本号（与 frontmatter / CHANGELOG 一致）
+├── LICENSE                     # MIT
+├── .github/workflows/          # CI：push/PR 自动跑路由测试 + 版本一致性
+├── docs/                       # 执行层协议与门禁（5 个文件）
+│   ├── execution-protocol.md       # 派工单六项 / 五要素回报 / 并行与仲裁
+│   ├── ownership-matrix.md         # 多专家冲突所有权矩阵
+│   ├── evidence-format.md          # 证据格式与落盘规范
+│   ├── stack-routing.md           # 技术栈路由唯一事实源
+│   └── quickstart.md               # 30 分钟端到端 walkthrough
+├── references/                 # 三段流程方法论（20 个文件）
 │   ├── 00-preflight/                # 前期：反问 / MVP / 选型 / 变更管理 / 模板
 │   ├── 01-in-flight/                # 中期：切片纪律 / 对抗审查 / git 纪律 / AGENTS.md
 │   └── 02-postflight/               # 后期：五维评测 / golden cases / 发布门禁
@@ -147,7 +153,7 @@ vibecoding-navigator/
 
 ## 🚀 快速开始
 
-**第一次用（30 分钟）**：读 [`docs/quickstart.md`](docs/quickstart.md)，跟一个 todo app 端到端跑通：复制模板 → 反问定 MVP → 产出三个 md → 派第一个切片 → 收五要素回报 → 门禁通过 → commit。
+> **第一次用（30 分钟）**：读 [`docs/quickstart.md`](docs/quickstart.md)，跟一个 todo app 端到端跑通：复制模板 → 反问定 MVP → 产出三个 md → 派第一个切片 → 收五要素回报 → 门禁通过 → commit。
 
 **装进你的 agent**（详细平台表见 [`INSTALL.md`](INSTALL.md)）：
 
@@ -159,7 +165,7 @@ git clone https://github.com/louisss1016/vibecoding-navigator.git ~/.claude/skil
 cd ~/.claude/skills/vibecoding-navigator && git pull
 ```
 
-安装后对 agent 说 **"开始 vibecoding，我想做个 XX"**——它应该先读 `references/00-preflight/questioning-rules.md` 开始反问你，而不是直接写代码。这就是装对了。
+安装后对 agent 说 **"开始 vibecoding，我想做个 XX"**——它应该先读 `references/00-preflight/questioning-rules.md` 开始反问你，而不是直接写代码。**这就是装对了。**
 
 **验证安装**：skill 根目录跑 `python tests/run-routing-tests.py`，14 条用例应全部 PASS；`python tests/check-version.py` 校验三处版本号一致。这两项在 CI 里对每次 push 自动执行（见上方徽章）。
 
@@ -167,13 +173,13 @@ cd ~/.claude/skills/vibecoding-navigator && git pull
 
 ## 🧪 质量保证：这个 Skill 按自己的纪律构建
 
-流程类文档最大的风险是**文档里说有、实际跑不起来**。本仓库的执行标准：所有推荐的命令和流程都经过真实执行——
+> 流程类文档最大的风险是**文档里说有、实际跑不起来**。本仓库的执行标准：所有推荐的命令和流程都经过真实执行。
 
-- **CI 自动门禁**：每次 push / PR 自动跑路由测试 + 版本一致性检查 + `gate.sh` 语法校验（`.github/workflows/routing-tests.yml`）——本 skill 铁律"CI 回归：不想起来才跑"先约束自己
-- **路由测试**：14/14 PASS（执行器首跑即抓到一处真实路由漂移并修复，记录在 CHANGELOG v2.2.0）
-- **冒烟验证**：用零依赖 todo app 真跑 `gate.sh`，首跑 FAIL 2 → 修复 → PASS 6 | WARN 2 | FAIL 0，全程记录在案
-- **文档命令保鲜**：连"文档推荐的命令自己会过期"这种事都抓到过——Node 22 起 `node --test tests/` 语义变化导致的坑，已写进 quickstart 卡点表
-- **版本纪律**：`VERSION` / `SKILL.md` frontmatter / `CHANGELOG.md` 三处版本号由 `tests/check-version.py` 强制一致，不再靠人工核对
+- ✅ **CI 自动门禁**：每次 push / PR 自动跑路由测试 + 版本一致性检查 + `gate.sh` 语法校验（`.github/workflows/routing-tests.yml`）——本 skill 铁律"CI 回归：不想起来才跑"先约束自己
+- ✅ **路由测试**：14/14 PASS（执行器首跑即抓到一处真实路由漂移并修复，记录在 CHANGELOG v2.2.0）
+- ✅ **冒烟验证**：用零依赖 todo app 真跑 `gate.sh`，首跑 FAIL 2 → 修复 → PASS 6 | WARN 2 | FAIL 0，全程记录在案
+- ✅ **文档命令保鲜**：连"文档推荐的命令自己会过期"这种事都抓到过——Node 22 起 `node --test tests/` 语义变化导致的坑，已写进 quickstart 卡点表
+- ✅ **版本纪律**：`VERSION` / `SKILL.md` frontmatter / `CHANGELOG.md` 三处版本号由 `tests/check-version.py` 强制一致，不再靠人工核对
 
 ---
 
@@ -188,7 +194,7 @@ cd ~/.claude/skills/vibecoding-navigator && git pull
 | React / Next.js / Vercel | `specialists/web-react/` |
 | 部署 / CI / 域名 / SSL / 回滚 / 监控 / 日志 / 备份 | `specialists/deploy-ops/` |
 
-技术栈专家只回答"怎么写"，不回答"做什么"和"做到哪算完"——后者是三段流程的领地。每个 specialist 头部带 `contract` 契约块，派工前先读契约再派工。
+> 技术栈专家只回答"怎么写"，不回答"做什么"和"做到哪算完"——后者是三段流程的领地。每个 specialist 头部带 `contract` 契约块，派工前先读契约再派工。
 
 ---
 
