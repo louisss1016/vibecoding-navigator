@@ -1,0 +1,67 @@
+[
+  {
+    "id": "A",
+    "prompt": "修一下 Electron preload 的 IPC 接口",
+    "expected": ["ts-react-electron/fullstack-desktop"]
+  },
+  {
+    "id": "K",
+    "prompt": "给我的应用接一个大模型，做一个能调工具的研究 Agent",
+    "expected": ["agent-architecture"]
+  },
+  {
+    "id": "L",
+    "prompt": "这个 Agent 的结论不知道可不可信，帮我建评测和回归用例",
+    "expected": ["agent-architecture"]
+  },
+  {
+    "id": "M",
+    "prompt": "工具结果太大把上下文撑爆了，Token 成本怎么治理",
+    "expected": ["agent-architecture"]
+  },
+  {
+    "id": "B",
+    "prompt": "这个 React 设置页组件渲染太慢，优化一下",
+    "expected": ["ts-react-electron/fullstack-desktop"]
+  },
+  {
+    "id": "C",
+    "prompt": "重新设计侧边栏的视觉",
+    "expected": ["ts-react-electron/fullstack-desktop"]
+  },
+  {
+    "id": "D",
+    "prompt": "优化这个 SQLite 查询",
+    "expected": ["ts-react-electron/fullstack-desktop", "python-fastapi"]
+  },
+  {
+    "id": "E",
+    "prompt": "给设置页加 Playwright E2E 测试",
+    "expected": ["ts-react-electron/fullstack-desktop"]
+  },
+  {
+    "id": "F",
+    "prompt": "用 Python FastAPI 写一个 todo 的 REST API，SQLite 存储，pytest 覆盖",
+    "expected": ["python-fastapi"]
+  },
+  {
+    "id": "G",
+    "prompt": "把这个 Next.js 应用部署到 Vercel，配好环境变量",
+    "expected": ["web-react", "deploy-ops"]
+  },
+  {
+    "id": "H",
+    "prompt": "项目要上线了，帮我配 CI、域名、监控和数据库备份",
+    "expected": ["deploy-ops"]
+  },
+  {
+    "id": "I",
+    "prompt": "生产环境报 500 了，日志在哪看、怎么回滚到上一个版本",
+    "expected": ["deploy-ops"]
+  },
+  {
+    "id": "J",
+    "prompt": "接盘一个别人的 Node 项目，先帮我看看现在怎么跑的",
+    "expected": ["brownfield-recon", "ts-react-electron/fullstack-desktop"]
+  }
+]

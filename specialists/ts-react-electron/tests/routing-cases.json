@@ -1,0 +1,39 @@
+[
+  {
+    "id": "A",
+    "prompt": "Fix the Electron preload IPC API.",
+    "expected": ["electron-best-practices", "typescript-pro"]
+  },
+  {
+    "id": "B",
+    "prompt": "Optimize this React settings component.",
+    "expected": ["vercel-react-best-practices", "typescript-pro"]
+  },
+  {
+    "id": "C",
+    "prompt": "Redesign the application sidebar.",
+    "expected": ["frontend-design", "vercel-react-best-practices"]
+  },
+  {
+    "id": "D",
+    "prompt": "Optimize this SQLite query.",
+    "expected": ["sql-pro"]
+  },
+  {
+    "id": "E",
+    "prompt": "Add Playwright tests for the settings page.",
+    "expected": ["playwright-expert"]
+  },
+  {
+    "id": "F",
+    "prompt": "Build an Electron settings page that stores data in SQLite and add E2E tests.",
+    "expected": [
+      "electron-best-practices",
+      "typescript-pro",
+      "vercel-react-best-practices",
+      "frontend-design",
+      "sql-pro",
+      "playwright-expert"
+    ]
+  }
+]

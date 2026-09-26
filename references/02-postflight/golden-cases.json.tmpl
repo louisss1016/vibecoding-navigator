@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "description": "Golden cases 机器可读格式。复制到项目 tests/golden-cases.json，每个切片遇到一个 bug 就加一条。自动化回归由 scripts/gate.sh 执行。Agent 项目（接 LLM/有工具调用）必须有 agent 类用例。",
+  "cases": [
+    {
+      "id": "main-path",
+      "title": "主链路能跑通",
+      "category": "normal",
+      "steps": "打开 app → 输入'买牛奶' → 点添加 → 列表出现'买牛奶'",
+      "expected": "列表出现新条目，没有报错",
+      "verify": { "type": "command", "cmd": "npm test -- main-path" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "empty-input",
+      "title": "空输入不崩",
+      "category": "normal",
+      "steps": "什么都不输直接点提交",
+      "expected": "有人话提示，不崩，不产生脏数据",
+      "verify": { "type": "command", "cmd": "npm test -- empty-input" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "offline",
+      "title": "数据源不可用",
+      "category": "error",
+      "steps": "断网 / 关数据库后执行核心操作",
+      "expected": "显示人话错误，不白屏，不丢已加载数据",
+      "verify": { "type": "manual" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "restart-recovery",
+      "title": "重启恢复",
+      "category": "state",
+      "steps": "操作到一半关掉 app，再打开",
+      "expected": "恢复到之前状态，无半成品脏数据",
+      "verify": { "type": "manual" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "double-submit",
+      "title": "重复点击",
+      "category": "state",
+      "steps": "快速连点同一按钮十次",
+      "expected": "不崩、不重复提交、按钮进入 loading 防重",
+      "verify": { "type": "manual" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "fresh-install-empty",
+      "title": "全新安装无数据",
+      "category": "data",
+      "steps": "清空数据库/换新用户第一次打开",
+      "expected": "Empty 状态有引导，不白屏",
+      "verify": { "type": "manual" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "agent-session-isolation",
+      "title": "两个会话上下文不串",
+      "category": "agent",
+      "steps": "同时开两个会话跑不同任务",
+      "expected": "互相不污染，各自的上下文/工具调用独立",
+      "verify": { "type": "command", "cmd": "npm test -- session-isolation" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "agent-provider-partial",
+      "title": "Provider 返回部分数据",
+      "category": "agent",
+      "steps": "让某个数据源返回 partial（缺字段）",
+      "expected": "结果标 partial + missingFields，不编造不NaN，UI 提示缺什么",
+      "verify": { "type": "manual" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "agent-trace-replay",
+      "title": "Trace 可还原工具路径",
+      "category": "agent",
+      "steps": "跑一次多步任务，从 Trace 还原每一步",
+      "expected": "能回答'调了哪些工具、参数、返回、耗时'，不只是最终答案",
+      "verify": { "type": "manual" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "agent-budget-cap",
+      "title": "超出预算正确降级",
+      "category": "agent",
+      "steps": "构造超 Tool 次数/重试/Token 预算的任务",
+      "expected": "按预算降级或终止，不无限烧钱，日志标 degraded=true",
+      "verify": { "type": "command", "cmd": "npm test -- budget-cap" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    },
+    {
+      "id": "agent-pass3-stability",
+      "title": "同一用例连跑 3 次都过（pass^3）",
+      "category": "agent",
+      "steps": "关键用例重复运行 3 次",
+      "expected": "3/3 通过，结果和过程都在可接受范围；碰运气过的用例是定时炸弹",
+      "verify": { "type": "command", "cmd": "npm test -- stability" },
+      "related_slice": "",
+      "last_run": { "date": "", "result": "" }
+    }
+  ]
+}

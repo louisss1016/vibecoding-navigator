@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "name": "fullstack-desktop-skills",
+  "description": "A curated skill pack for TypeScript + React + Electron desktop applications.",
+  "distribution_policy": "Vendor upstream skills only when their terms permit redistribution; otherwise fetch them at install time without copying them into this pack.",
+  "skills": [
+    {
+      "name": "fullstack-desktop",
+      "source": "skills/fullstack-desktop",
+      "path": "skills/fullstack-desktop",
+      "source_type": "local",
+      "distribution": "local",
+      "license": "MIT (this project's original router and tooling)",
+      "role": "router",
+      "install_method": "npx skills add <local-path> --skill fullstack-desktop --agent <agent> --copy --yes"
+    },
+    {
+      "name": "electron-best-practices",
+      "source": "NinjaSln-labs/agent-skills",
+      "path": "electron-best-practices",
+      "source_type": "github",
+      "distribution": "runtime",
+      "repository": "https://github.com/NinjaSln-labs/agent-skills.git",
+      "upstream_path": "electron-best-practices",
+      "license": "Undeclared for this repository/skill",
+      "role": "specialist",
+      "install_method": "runtime-only via npx skills add with --skill; not copied because redistribution terms were not declared"
+    },
+    {
+      "name": "typescript-pro",
+      "source": "Jeffallan/claude-skills",
+      "path": "skills/typescript-pro",
+      "source_type": "github",
+      "distribution": "vendored",
+      "vendor_path": "vendor/skills/typescript-pro",
+      "repository": "https://github.com/Jeffallan/claude-skills.git",
+      "upstream_path": "skills/typescript-pro",
+      "upstream_ref": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf",
+      "license": "MIT",
+      "role": "specialist",
+      "install_method": "installed from the bundled vendor/skills/typescript-pro copy"
+    },
+    {
+      "name": "sql-pro",
+      "source": "Jeffallan/claude-skills",
+      "path": "skills/sql-pro",
+      "source_type": "github",
+      "distribution": "vendored",
+      "vendor_path": "vendor/skills/sql-pro",
+      "repository": "https://github.com/Jeffallan/claude-skills.git",
+      "upstream_path": "skills/sql-pro",
+      "upstream_ref": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf",
+      "license": "MIT",
+      "role": "specialist",
+      "install_method": "installed from the bundled vendor/skills/sql-pro copy"
+    },
+    {
+      "name": "playwright-expert",
+      "source": "Jeffallan/claude-skills",
+      "path": "skills/playwright-expert",
+      "source_type": "github",
+      "distribution": "vendored",
+      "vendor_path": "vendor/skills/playwright-expert",
+      "repository": "https://github.com/Jeffallan/claude-skills.git",
+      "upstream_path": "skills/playwright-expert",
+      "upstream_ref": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf",
+      "license": "MIT",
+      "role": "specialist",
+      "install_method": "installed from the bundled vendor/skills/playwright-expert copy"
+    },
+    {
+      "name": "vercel-react-best-practices",
+      "source": "https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices",
+      "path": "skills/react-best-practices",
+      "source_type": "github",
+      "distribution": "vendored",
+      "vendor_path": "vendor/skills/vercel-react-best-practices",
+      "repository": "https://github.com/vercel-labs/agent-skills.git",
+      "upstream_path": "skills/react-best-practices",
+      "upstream_ref": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "license": "MIT",
+      "role": "specialist",
+      "install_method": "installed from the bundled vendor/skills/vercel-react-best-practices copy"
+    },
+    {
+      "name": "frontend-design",
+      "source": "https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design/skills/frontend-design",
+      "path": "plugins/frontend-design/skills/frontend-design",
+      "source_type": "github",
+      "distribution": "runtime",
+      "repository": "https://github.com/anthropics/claude-code.git",
+      "upstream_path": "plugins/frontend-design/skills/frontend-design",
+      "license": "Complete terms in upstream LICENSE.txt; repository LICENSE.md reserves rights under Anthropic commercial terms",
+      "role": "specialist",
+      "install_method": "runtime-only via npx skills add with direct skill path; not copied because redistribution terms are not permissive"
+    }
+  ]
+}
