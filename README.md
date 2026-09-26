@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/logo.png?v=2" alt="Vibecoding Navigator" width="280">
+<img src="docs/assets/logo.png?v=2" alt="Vibecoding Navigator" width="220">
 
 **让 AI 写代码不翻车的全流程导航 Skill**
 
