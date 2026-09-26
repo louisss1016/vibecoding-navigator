@@ -1,8 +1,22 @@
 # INSTALL：这个 skill 怎么被 agent 用上
 
-## 作为 Agent Skill 安装（推荐）
+## 通过 git 安装与更新（推荐）
 
-把整个 `vibecoding-navigator/` 目录放到 agent 的 skill 发现路径下：
+仓库已发布到 GitHub，用 git 管理安装副本——安装是一次 clone，升级是一次 pull，不会出现"装了旧版不知道"：
+
+```bash
+# 安装（以 Claude Code 用户级为例，其他平台换下表的对应路径）
+git clone https://github.com/louisss1016/vibecoding-navigator.git ~/.claude/skills/vibecoding-navigator
+
+# 升级（skill 发新版本后，在安装目录执行）
+cd ~/.claude/skills/vibecoding-navigator && git pull
+```
+
+CI 对每次 push 自动跑路由测试与版本一致性检查（`.github/workflows/routing-tests.yml`），main 分支永远是通过门禁的状态——直接 pull 不会拉到坏版本。
+
+## 手动复制安装（备选）
+
+把整个 `vibecoding-navigator/` 目录复制到 agent 的 skill 发现路径下：
 
 | Agent | 项目级路径 | 用户级路径 |
 |---|---|---|
@@ -24,6 +38,8 @@ cd <你的应用项目>
 ```
 
 装完后 pack 内的 router（`skills/fullstack-desktop/SKILL.md`）才会被 agent 发现。未安装时按 `docs/stack-routing.md` 的注意项处理：明确告诉用户该专家不可用，用通用原则代替，不假装专家在。
+
+pack 的升级走它自己的 `scripts/update.sh`（与 install.sh 同目录、同参数形式），与主 skill 的 `git pull` 相互独立。
 
 ## 使用时的两个复制动作
 

@@ -1,6 +1,6 @@
 ---
 name: vibecoding-navigator
-version: 2.3.0
+version: 2.3.1
 description: Vibe coding 全流程导航：coding 前把需求/架构/技术选型钉死，coding 中按最小切片推进并通过子 agent 执行与验收，coding 后用五维评测和可执行发布门禁验收，上线后运维有人管。当用户说"我想做个项目""帮我规划一下""开始 vibecoding""这个项目怎么做"、从零启动新项目、改造已有项目、或做 Agent/LLM/多步任务项目时使用。覆盖需求澄清、切片推进、测试部署、上线运维全流程。
 ---
 

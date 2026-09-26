@@ -6,9 +6,10 @@
 
 *代码廉价，判断昂贵。* —— AI 几分钟能生成几百行代码，但"用户到底要什么、怎么证明这次改对了、错了回退到哪一步、上线之后出事谁管"，这些判断不能外包。
 
-![version](https://img.shields.io/badge/version-2.3.0-2563eb?style=flat-square)
-![files](https://img.shields.io/badge/files-147-059669?style=flat-square)
-![routing tests](https://img.shields.io/badge/routing_tests-13%2F13_PASS-16a34a?style=flat-square)
+![version](https://img.shields.io/badge/version-2.3.1-2563eb?style=flat-square)
+![files](https://img.shields.io/badge/files-151-059669?style=flat-square)
+![CI](https://github.com/louisss1016/vibecoding-navigator/actions/workflows/routing-tests.yml/badge.svg)
+![license](https://img.shields.io/badge/license-MIT-2563eb?style=flat-square)
 ![gate](https://img.shields.io/badge/release_gate-7_checks-d97706?style=flat-square)
 ![markdown](https://img.shields.io/badge/made_of-Markdown-1f425f?style=flat-square)
 
@@ -113,8 +114,10 @@ vibecoding-navigator/
 ├── README.md                   # 本文件：项目门面
 ├── SKILL.md                     # 入口：六条铁律 + 路由表 + 新项目七步
 ├── CHANGELOG.md                 # 版本演进记录（含真实冒烟记录）
-├── INSTALL.md                   # 五平台安装 + 兼容性分层说明
+├── INSTALL.md                   # 五平台安装 + git 升级 + 兼容性分层说明
 ├── VERSION                      # 当前版本号（与 frontmatter / CHANGELOG 一致）
+├── LICENSE                      # MIT
+├── .github/workflows/           # CI：push/PR 自动跑路由测试 + 版本一致性
 ├── docs/                        # 执行层协议与门禁（5 个文件）
 │   ├── execution-protocol.md        # 派工单六项 / 五要素回报 / 并行与仲裁
 │   ├── ownership-matrix.md          # 多专家冲突所有权矩阵
@@ -135,7 +138,8 @@ vibecoding-navigator/
 │   └── gate.sh                      # 七项自动发布门禁（复制进你的项目用）
 └── tests/
     ├── routing-cases.json           # 13 条路由用例（机器可读）
-    └── run-routing-tests.py         # 路由测试执行器（仅标准库）
+    ├── run-routing-tests.py         # 路由测试执行器（仅标准库）
+    └── check-version.py             # 版本一致性检查（三处版本号强制一致）
 ```
 
 ---
@@ -147,13 +151,16 @@ vibecoding-navigator/
 **装进你的 agent**（详细平台表见 [`INSTALL.md`](INSTALL.md)）：
 
 ```bash
-# 以 Claude Code / CodeBuddy 为例，用户级安装
+# 以 Claude Code 为例，用户级安装（其他平台换对应路径）
 git clone https://github.com/louisss1016/vibecoding-navigator.git ~/.claude/skills/vibecoding-navigator
+
+# 升级（skill 发新版本后）
+cd ~/.claude/skills/vibecoding-navigator && git pull
 ```
 
 安装后对 agent 说 **"开始 vibecoding，我想做个 XX"**——它应该先读 `references/00-preflight/questioning-rules.md` 开始反问你，而不是直接写代码。这就是装对了。
 
-**验证安装**：skill 根目录跑 `python tests/run-routing-tests.py`，13 条用例应全部 PASS。
+**验证安装**：skill 根目录跑 `python tests/run-routing-tests.py`，13 条用例应全部 PASS；`python tests/check-version.py` 校验三处版本号一致。这两项在 CI 里对每次 push 自动执行（见上方徽章）。
 
 ---
 
@@ -161,10 +168,11 @@ git clone https://github.com/louisss1016/vibecoding-navigator.git ~/.claude/skil
 
 流程类文档最大的风险是**文档里说有、实际跑不起来**。本仓库的执行标准：所有推荐的命令和流程都经过真实执行——
 
+- **CI 自动门禁**：每次 push / PR 自动跑路由测试 + 版本一致性检查 + `gate.sh` 语法校验（`.github/workflows/routing-tests.yml`）——本 skill 铁律"CI 回归：不想起来才跑"先约束自己
 - **路由测试**：13/13 PASS（执行器首跑即抓到一处真实路由漂移并修复，记录在 CHANGELOG v2.2.0）
 - **冒烟验证**：用零依赖 todo app 真跑 `gate.sh`，首跑 FAIL 2 → 修复 → PASS 6 | WARN 2 | FAIL 0，全程记录在案
 - **文档命令保鲜**：连"文档推荐的命令自己会过期"这种事都抓到过——Node 22 起 `node --test tests/` 语义变化导致的坑，已写进 quickstart 卡点表
-- **版本纪律**：`VERSION` / `SKILL.md` frontmatter / `CHANGELOG.md` 三处版本号强制一致
+- **版本纪律**：`VERSION` / `SKILL.md` frontmatter / `CHANGELOG.md` 三处版本号由 `tests/check-version.py` 强制一致，不再靠人工核对
 
 ---
 
@@ -186,6 +194,7 @@ git clone https://github.com/louisss1016/vibecoding-navigator.git ~/.claude/skil
 
 | 版本 | 主题 |
 |---|---|
+| **v2.3.1** | 仓库工程化：CI 自动门禁、MIT LICENSE、版本一致性检查、git 安装/升级机制 |
 | **v2.3.0** | 融合企业级研发 SOP：AI 五层测试面、Go/No-Go 上线准入、Cutover / Incident 体系、DoR/DoD、CR 十项优先级、变更影响七维 |
 | **v2.2.0** | 外部评审闭环：路由测试从数据升级为可执行门禁、30 分钟 quickstart、agent-architecture 快速入口 |
 | **v2.1.0** | 融合 Agent 工程契约：新增 agent-architecture 专家、评测工程化、多 Agent 升级判据 |

@@ -2,6 +2,26 @@
 
 本文件记录 vibecoding-navigator 的结构性变更。版本号与 `VERSION` 文件、主 SKILL.md frontmatter 保持一致。
 
+## [2.3.1] — 2026-09-26
+
+主题：**仓库工程化周边补齐**。skill 功能内容零变更，补上公开仓库应有的基建 + 一个自监机制——"教别人用自动门禁的 skill，自己的门禁先跑起来"。
+
+### 新增
+
+- `LICENSE`（MIT）：仓库此前无 license，法律上他人无法使用/贡献——公开仓库的硬缺口，补齐。
+- `.github/workflows/routing-tests.yml`：push / PR 到 main 自动跑三项——路由测试执行器、版本一致性检查、`bash -n scripts/gate.sh` 语法校验。本 skill 铁律"CI 回归：不想起来才跑"此前只约束用户的项目，现在约束自己。
+- `tests/check-version.py`：版本一致性检查——`VERSION` / SKILL.md frontmatter `version:` / CHANGELOG 首个版本条目三处必须相等（顺带校验 name 字段与 x.y.z 格式）。仅标准库，退出码 0/1，已进 CI。三处版本号一致从此不靠人工核对。
+
+### 变更
+
+- `INSTALL.md`：安装方式重构为"git clone / git pull（推荐）"+ 手动复制（备选）；新增 pack 独立升级说明（`scripts/update.sh`）。理由：版本迭代到 v2.4.0 时，旧安装方式（复制目录）没有升级路径，必然出现"装了旧版不知道"。
+- `README.md`：徽章区将静态 routing tests 徽章换为动态 CI 徽章（`actions/workflows/routing-tests.yml/badge.svg`），新增 license 徽章；目录树补入 LICENSE / .github/ / check-version.py；快速开始补升级命令；质量保证补 CI 条目；版本演进表补本行。
+
+### 说明
+
+- 本版本为 patch：SKILL.md 路由表、references/、specialists/ 等被 agent 读取的内容零改动，变动全部在仓库基建层。
+- 本次发版即 `check-version.py` 的首次真实执行——三处版本号已同步为 2.3.1，本地与 CI 双向验证。
+
 ## [2.3.0] — 2026-09-25
 
 主题：**融合企业级研发 SOP，补上"个人 vibecoding 到团队交付"之间的方法论缺口**。融合来源为外部 SOP 文档《软件/AI公司业务与研发全流程 SOP》（50 章 + 4 附录，约 1.6 万行）。融合原则：**工程契约进 specialists、流程决策进 references、导航层不复制技术细节**——约三分之一内容为真缺口（其余与 skill 现有内容重复或为企业 ToB 专属如售前/FDE/立项，不融）。所有新内容落到既有文件的既有章节，不开新 specialist、不增导航层负担。

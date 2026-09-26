@@ -1,0 +1,26 @@
+name: routing-tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Routing tests (schema / 路由真实存在 / 防漂移 / specialist 覆盖)
+        run: python tests/run-routing-tests.py
+
+      - name: Version consistency (VERSION / frontmatter / CHANGELOG 三处一致)
+        run: python tests/check-version.py
+
+      - name: gate.sh syntax check
+        run: bash -n scripts/gate.sh
