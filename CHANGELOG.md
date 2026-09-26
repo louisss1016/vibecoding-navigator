@@ -2,6 +2,33 @@
 
 本文件记录 vibecoding-navigator 的结构性变更。版本号与 `VERSION` 文件、主 SKILL.md frontmatter 保持一致。
 
+## [2.4.0] — 2026-09-26
+
+主题：**补上 Java/Spring Boot 技术专家**。v2.3.1 自查通用性时发现一个真实缺口：Java 是企业后端和国内业务系统（电商、客服、WMS 类）的第一大栈，而 specialists 里只有 Python/TS/Web/Agent/部署五个专家，Java 项目只能走"专家还没写"的兜底。本版本补齐，minor bump。
+
+### 新增
+
+- `specialists/java-spring/SKILL.md`：Java + Spring Boot + Maven + JUnit 5 栈技术专家，沿用 python-fastapi 的房子风格（contract 契约块 + 项目结构 / 栈约定 / 数据库 / 测试 / 命令 / 常见坑 / 什么时候不用这个专家）。核心内容：
+  - 分层铁律：Controller 只做解析与编排，业务进 service，SQL 细节进 repository，Controller 不许出现 repository
+  - 构造器注入替代字段注入、出参一律 DTO（禁 entity 直接序列化）、`@Valid` + 全局异常处理器的错误信封
+  - 事务三条高压线：自调用失效、事务里禁远程调用、checked exception 显式 rollbackFor
+  - 数据库：Flyway 迁移 + `ddl-auto` 生产禁用、JPA N+1 的 JOIN FETCH / EntityGraph 解法、MyBatis `#{}` vs `${}`
+  - 测试分层：Mockito 单元测试 / `@WebMvcTest` Web 层 / `@DataJpaTest` 持久层 / 一条 `@SpringBootTest` 冒烟
+  - 常见坑 8 条（自调用失效、事务里远程调用、checked exception 不回滚、entity 出参、字段注入、循环依赖、循环 JSON、配置进 git）
+
+### 变更
+
+- `docs/stack-routing.md`：路由表新增 Java 行（Java / Spring / Spring Boot / Maven / Gradle / MyBatis / JPA / JUnit → `specialists/java-spring/`）；SQLite 行的"看项目主栈"分支补上 Java 项目指向
+- 主 `SKILL.md` 技术栈专家摘要表：同步加 Java 行（防路由漂移要求两处同时出现）
+- `docs/ownership-matrix.md`：所有权表新增"Java 后端"行，划清 java-spring 与主 skill / deploy-ops 的边界
+- `tests/routing-cases.json`：新增用例 N（Spring Boot todo API），路由用例 13 → 14 条
+- `README.md`：specialist 计数 5 → 6、目录树补 java-spring、技术栈路由表补 Java 行、路由测试 13 → 14 条、files 徽章更新、版本演进表补本行
+
+### 说明
+
+- 本版本为 minor：新增一个可路由专家，未改动任何既有 references/ 与 specialists/ 内容，主 SKILL.md 铁律与流程零变更。
+- 路由测试执行器本地回归 14/14 PASS，specialist 覆盖检查确认 java-spring 已被用例覆盖——"加新专家五步"（specialist / stack-routing / ownership-matrix / routing-cases / 跑测试）全部走完。
+
 ## [2.3.1] — 2026-09-26
 
 主题：**仓库工程化周边补齐**。skill 功能内容零变更，补上公开仓库应有的基建 + 一个自监机制——"教别人用自动门禁的 skill，自己的门禁先跑起来"。

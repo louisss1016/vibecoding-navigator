@@ -13,10 +13,11 @@
 | TypeScript / 类型 / 泛型 / strict mode / 类型重构 | ts-react-electron pack（typescript-pro） | 同上 |
 | React（桌面端 Electron 内）/ hooks / 渲染性能 | ts-react-electron pack（vercel-react-best-practices） | 同上 |
 | React（纯 Web）/ Next.js / Vercel / 浏览器前端 | `specialists/web-react/` | `specialists/web-react/SKILL.md` |
-| SQLite / 数据库 schema / 查询 / 索引 | 看项目主栈：TS 项目 → ts-react-electron pack（sql-pro）；Python 项目 → `specialists/python-fastapi/` | 对应 SKILL.md |
+| SQLite / 数据库 schema / 查询 / 索引 | 看项目主栈：TS 项目 → ts-react-electron pack（sql-pro）；Python 项目 → `specialists/python-fastapi/`；Java 项目 → `specialists/java-spring/` | 对应 SKILL.md |
 | Playwright / E2E / 视觉测试 | ts-react-electron pack（playwright-expert） | `specialists/ts-react-electron/skills/fullstack-desktop/SKILL.md` |
 | Python / FastAPI / uvicorn / Pydantic | `specialists/python-fastapi/` | `specialists/python-fastapi/SKILL.md` |
 | pytest / Python 测试 | `specialists/python-fastapi/` | `specialists/python-fastapi/SKILL.md` |
+| Java / Spring / Spring Boot / Maven / Gradle / MyBatis / JPA / JUnit | `specialists/java-spring/` | `specialists/java-spring/SKILL.md` |
 | 部署 / CI / CD / 域名 / SSL / 上线 / 回滚 / 监控 / 日志 / 备份 | `specialists/deploy-ops/` | `specialists/deploy-ops/SKILL.md` |
 | 前端视觉方向 / UI 设计 / 组件样式 | ts-react-electron pack（frontend-design，runtime-only） | `specialists/ts-react-electron/skills/fullstack-desktop/SKILL.md` |
 | 接盘已有代码库 / 存量改造 / "不知道现在怎么跑的" | `references/00-preflight/brownfield-recon.md`（前期侦察流程，不是技术专家；侦察完按项目主栈再路由到上面的专家） | 同左 |

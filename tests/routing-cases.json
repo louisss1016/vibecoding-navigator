@@ -20,6 +20,11 @@
     "expected": ["agent-architecture"]
   },
   {
+    "id": "N",
+    "prompt": "用 Spring Boot 写一个 todo 的 REST API，MySQL 存储，JUnit 5 覆盖",
+    "expected": ["java-spring"]
+  },
+  {
     "id": "B",
     "prompt": "这个 React 设置页组件渲染太慢，优化一下",
     "expected": ["ts-react-electron/fullstack-desktop"]

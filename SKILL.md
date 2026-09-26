@@ -1,6 +1,6 @@
 ---
 name: vibecoding-navigator
-version: 2.3.1
+version: 2.4.0
 description: Vibe coding 全流程导航：coding 前把需求/架构/技术选型钉死，coding 中按最小切片推进并通过子 agent 执行与验收，coding 后用五维评测和可执行发布门禁验收，上线后运维有人管。当用户说"我想做个项目""帮我规划一下""开始 vibecoding""这个项目怎么做"、从零启动新项目、改造已有项目、或做 Agent/LLM/多步任务项目时使用。覆盖需求澄清、切片推进、测试部署、上线运维全流程。
 ---
 
@@ -93,6 +93,7 @@ description: Vibe coding 全流程导航：coding 前把需求/架构/技术选�
 | LLM / Agent / 工具调用 / RAG / MCP / 多步任务 / 评测调优 | `specialists/agent-architecture/` |
 | TypeScript / React / Electron / SQLite / Playwright / 前端视觉 | `specialists/ts-react-electron/`（入口 `skills/fullstack-desktop/SKILL.md`） |
 | Python / FastAPI / SQLite / pytest | `specialists/python-fastapi/` |
+| Java / Spring / Spring Boot / Maven / MyBatis / JPA / JUnit | `specialists/java-spring/` |
 | Web / React / Next.js / Vercel | `specialists/web-react/` |
 | 部署 / CI / 域名 / SSL / 回滚 / 监控 / 日志 / 备份 | `specialists/deploy-ops/` |
 
