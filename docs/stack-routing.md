@@ -13,6 +13,7 @@
 | TypeScript / 类型 / 泛型 / strict mode / 类型重构 | ts-react-electron pack（typescript-pro） | 同上 |
 | React（桌面端 Electron 内）/ hooks / 渲染性能 | ts-react-electron pack（vercel-react-best-practices） | 同上 |
 | React（纯 Web）/ Next.js / Vercel / 浏览器前端 | `specialists/web-react/` | `specialists/web-react/SKILL.md` |
+| Vue / Vue 3 / Vite / Pinia / Element Plus / Vue Router / Vitest | `specialists/vue3/` | `specialists/vue3/SKILL.md` |
 | SQLite / 数据库 schema / 查询 / 索引 | 看项目主栈：TS 项目 → ts-react-electron pack（sql-pro）；Python 项目 → `specialists/python-fastapi/`；Java 项目 → `specialists/java-spring/` | 对应 SKILL.md |
 | Playwright / E2E / 视觉测试 | ts-react-electron pack（playwright-expert） | `specialists/ts-react-electron/skills/fullstack-desktop/SKILL.md` |
 | Python / FastAPI / uvicorn / Pydantic | `specialists/python-fastapi/` | `specialists/python-fastapi/SKILL.md` |

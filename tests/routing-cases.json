@@ -25,6 +25,11 @@
     "expected": ["java-spring"]
   },
   {
+    "id": "O",
+    "prompt": "用 Vue 3 + Vite 写一个 todo 的管理页面，接后端 API，Pinia 管状态",
+    "expected": ["vue3"]
+  },
+  {
     "id": "B",
     "prompt": "这个 React 设置页组件渲染太慢，优化一下",
     "expected": ["ts-react-electron/fullstack-desktop"]

@@ -2,6 +2,34 @@
 
 本文件记录 vibecoding-navigator 的结构性变更。版本号与 `VERSION` 文件、主 SKILL.md frontmatter 保持一致。
 
+## [2.5.0] — 2026-09-26
+
+主题：**补上 Vue 3 前端专家**。继 v2.4.0 补 Java 后，同一自查逻辑的延续：Vue 是国内业务系统（管理后台、网批、全渠道中台类）的第一大前端栈，而 specialists 里只有 React 阵营（web-react / ts-react-electron），Vue 项目此前只能走"专家还没写"的兜底。Vue 3 与 Vue 2 差异巨大（组合式 API、Vite、Pinia vs Vuex），专家命名直接带 `vue3`，防止误路由到 Vue 2 项目。minor bump。
+
+### 新增
+
+- `specialists/vue3/SKILL.md`：Vue 3 + Vite + Pinia + Element Plus + Vitest 栈技术专家，沿用房子风格（contract 契约块 + 项目结构 / 栈约定 / 状态管理 / API 调用 / UI 组件库 / 路由 / 测试 / 命令 / 常见坑 / 什么时候不用这个专家）。核心内容：
+  - 项目只准 Vue 3 语法：`<script setup>` + 组合式 API，禁 Vue 2 残留（选项式混用、`$set`、filter）
+  - props 单向数据流（禁直接改 props）、`v-for` 禁 index 当 key、组件通信按距离选（props/emits/provide-inject/Pinia）
+  - Pinia 边界：全局状态才进 store，**服务端数据不塞 Pinia 当缓存**；解构 store 必须 `storeToRefs`
+  - Element Plus 按需引入（`unplugin-vue-components`），禁 main.ts 全量 import
+  - `VITE_` 前缀环境变量会打进客户端包——机密不许放这里
+  - 常见坑 8 条：解构丢响应式、Vue 2 思维、直接改 props、history 模式 nginx 没配 fallback 刷新 404、组件库全量引入、VITE_ 当保险箱、nextTick 当同步、watch 默认不深度
+
+### 变更
+
+- `docs/stack-routing.md`：路由表新增 Vue 行（Vue / Vue 3 / Vite / Pinia / Element Plus / Vue Router / Vitest → `specialists/vue3/`）
+- 主 `SKILL.md` 技术栈专家摘要表：同步加 Vue 行（防路由漂移要求两处同时出现）
+- `docs/ownership-matrix.md`：所有权表新增"Vue 前端"行，划清 vue3 与后端专家 / deploy-ops 的边界
+- `tests/routing-cases.json`：新增用例 O（Vue 3 + Vite todo 管理页），路由用例 14 → 15 条
+- `README.md`：specialist 计数 6 → 7、目录树补 vue3、技术栈路由表补 Vue 行、路由测试 14 → 15 条、files 徽章更新、版本演进表补本行
+
+### 说明
+
+- 本版本为 minor：新增一个可路由专家，未改动任何既有 references/ 与 specialists/ 内容，主 SKILL.md 铁律与流程零变更。
+- 路由测试执行器本地回归 15/15 PASS，specialist 覆盖检查确认 vue3 已被用例覆盖。
+- 至此 specialists 覆盖七大方向：Agent 架构 / Java 后端 / Python 后端 / TS 桌面 / React Web / Vue Web / 部署运维——国内 vibecoding 主流栈无重大缺口。
+
 ## [2.4.0] — 2026-09-26
 
 主题：**补上 Java/Spring Boot 技术专家**。v2.3.1 自查通用性时发现一个真实缺口：Java 是企业后端和国内业务系统（电商、客服、WMS 类）的第一大栈，而 specialists 里只有 Python/TS/Web/Agent/部署五个专家，Java 项目只能走"专家还没写"的兜底。本版本补齐，minor bump。

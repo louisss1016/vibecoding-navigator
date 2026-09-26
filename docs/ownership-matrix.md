@@ -18,6 +18,7 @@
 | 架构边界 | 主 skill | 模块怎么分、跨模块怎么调 | 模块内部怎么实现 |
 | Agent 架构 | agent-architecture | 材料与能力入口怎么接、Loop/多 Agent 怎么编排、评测对象与回流怎么定 | 具体某个框架/库的 API 用法 |
 | Java 后端 | java-spring | Spring Boot 分层与依赖注入、Controller/Service/Repository 边界、事务怎么划、JPA/MyBatis 用法、JUnit 测试组织 | 流程对不对、前端与部署 |
+| Vue 前端 | vue3 | Vue 3 SFC 与组合式 API、组件通信、Pinia 状态管理、Vue Router、Element Plus 用法、Vitest 测试组织 | 流程对不对、后端与部署 |
 | 测试 | 技术专家 | 怎么写测试 | 测什么业务场景 |
 | UI 视觉 | ts-react-electron pack 内的 frontend-design（runtime-only） | 颜色、布局、视觉方向、组件样式 | 业务逻辑 |
 | 渲染性能 | ts-react-electron pack 内的 vercel-react-best-practices（Web React 场景归 web-react） | 渲染行为、bundle 性能 | 视觉方向本身 |

@@ -1,6 +1,6 @@
 ---
 name: vibecoding-navigator
-version: 2.4.0
+version: 2.5.0
 description: Vibe coding 全流程导航：coding 前把需求/架构/技术选型钉死，coding 中按最小切片推进并通过子 agent 执行与验收，coding 后用五维评测和可执行发布门禁验收，上线后运维有人管。当用户说"我想做个项目""帮我规划一下""开始 vibecoding""这个项目怎么做"、从零启动新项目、改造已有项目、或做 Agent/LLM/多步任务项目时使用。覆盖需求澄清、切片推进、测试部署、上线运维全流程。
 ---
 
@@ -95,6 +95,7 @@ description: Vibe coding 全流程导航：coding 前把需求/架构/技术选�
 | Python / FastAPI / SQLite / pytest | `specialists/python-fastapi/` |
 | Java / Spring / Spring Boot / Maven / MyBatis / JPA / JUnit | `specialists/java-spring/` |
 | Web / React / Next.js / Vercel | `specialists/web-react/` |
+| Vue / Vue 3 / Vite / Pinia / Element Plus / Vue Router | `specialists/vue3/` |
 | 部署 / CI / 域名 / SSL / 回滚 / 监控 / 日志 / 备份 | `specialists/deploy-ops/` |
 
 技术栈专家只回答"怎么写"的问题，不回答"做什么"和"做到哪算完"的问题——那是上面三段流程的事。每个 specialist 头部带 `contract` 契约块，派工前先读契约再派工。
