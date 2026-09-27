@@ -8,8 +8,8 @@
 
 <br>
 
-![version](https://img.shields.io/badge/version-2.5.0-2563eb?style=flat-square)
-![files](https://img.shields.io/badge/files-154-059669?style=flat-square)
+![version](https://img.shields.io/badge/version-2.6.0-2563eb?style=flat-square)
+![files](https://img.shields.io/badge/files-191-059669?style=flat-square)
 ![CI](https://github.com/louisss1016/vibecoding-navigator/actions/workflows/routing-tests.yml/badge.svg)
 ![license](https://img.shields.io/badge/license-MIT-2563eb?style=flat-square)
 ![gate](https://img.shields.io/badge/release_gate-7_checks-d97706?style=flat-square)
@@ -96,7 +96,7 @@ flowchart TB
 |---|---|---|
 | **编排层** | 流程所有权**永不外包**：定义切片、验收标准、回滚点 | `references/` 三段流程 |
 | **执行层** | 子 agent × N，按 specialist 路由干活，只传结构化结果 | `docs/execution-protocol.md` |
-| **知识层** | 7 个契约化 specialist，只回答"怎么写"，不回答"做什么" | `specialists/` |
+| **知识层** | 8 个契约化 specialist，只回答"怎么写"，不回答"做什么" | `specialists/` |
 
 ---
 
@@ -107,7 +107,7 @@ flowchart TB
 | **派工单** | 六项：切片定义 / 接口契约 / 禁区 / 专家知识 / 验证命令 / 硬规则，缺一项不派工 | 派工不清导致返工 |
 | **五要素回报** | 文件清单、验证命令原始输出全文、证据路径、自审结论、冲突标记，缺一即未完成 | AI 幻觉"完成了" |
 | **七项自动门禁** | git 干净度 / debug 残留 / 密钥泄露 / 依赖漏洞 / 构建 / 测试 / golden cases，FAIL 即阻断发布 | 带病上线 |
-| **路由测试执行器** | 15 条用例：schema + 路由真实存在 + 防路由漂移 + specialist 覆盖 | 路由表烂掉 |
+| **路由测试执行器** | 16 条用例：schema + 路由真实存在 + 防路由漂移 + specialist 覆盖 | 路由表烂掉 |
 | **DoR / DoD** | 两张 checklist：DoR 管住"别急着派工"，DoD 管住"别急着合并" | 半成品流转 |
 | **可追溯链** | PROJECT → ARCHITECTURE → 切片 → Commit → 证据 → Release → Feedback | "这代码为什么存在"无人能答 |
 
@@ -130,11 +130,11 @@ vibecoding-navigator/
 │   ├── evidence-format.md          # 证据格式与落盘规范
 │   ├── stack-routing.md           # 技术栈路由唯一事实源
 │   └── quickstart.md               # 30 分钟端到端 walkthrough
-├── references/                 # 三段流程方法论（20 个文件）
+├── references/                 # 三段流程方法论（22 个文件）
 │   ├── 00-preflight/                # 前期：反问 / MVP / 选型 / 变更管理 / 模板
 │   ├── 01-in-flight/                # 中期：切片纪律 / 对抗审查 / git 纪律 / AGENTS.md
 │   └── 02-postflight/               # 后期：五维评测 / golden cases / 发布门禁
-├── specialists/                 # 7 个契约化技术专家
+├── specialists/                 # 8 个契约化技术专家
 │   ├── agent-architecture/          # LLM / Agent / RAG / MCP / 多 Agent / 评测调优
 │   ├── ts-react-electron/           # TS / React / Electron / SQLite（含 4 个 vendored skills）
 │   ├── python-fastapi/              # Python / FastAPI / pytest
@@ -142,10 +142,11 @@ vibecoding-navigator/
 │   ├── vue3/                        # Vue 3 / Vite / Pinia / Element Plus / Vue Router / Vitest
 │   ├── web-react/                   # React / Next.js / Vercel
 │   └── deploy-ops/                  # CI/CD / Go-No-Go / Cutover / Incident / Runbook
+│   └── ui-polish/                   # UI 工艺 pack：router + vendor better-* 六件套（MIT）
 ├── scripts/
 │   └── gate.sh                      # 七项自动发布门禁（复制进你的项目用）
 └── tests/
-    ├── routing-cases.json           # 15 条路由用例（机器可读）
+    ├── routing-cases.json           # 16 条路由用例（机器可读）
     ├── run-routing-tests.py         # 路由测试执行器（仅标准库）
     └── check-version.py             # 版本一致性检查（三处版本号强制一致）
 ```
@@ -168,7 +169,7 @@ cd ~/.claude/skills/vibecoding-navigator && git pull
 
 安装后对 agent 说 **"开始 vibecoding，我想做个 XX"**——它应该先读 `references/00-preflight/questioning-rules.md` 开始反问你，而不是直接写代码。**这就是装对了。**
 
-**验证安装**：skill 根目录跑 `python tests/run-routing-tests.py`，15 条用例应全部 PASS；`python tests/check-version.py` 校验三处版本号一致。这两项在 CI 里对每次 push 自动执行（见上方徽章）。
+**验证安装**：skill 根目录跑 `python tests/run-routing-tests.py`，16 条用例应全部 PASS；`python tests/check-version.py` 校验三处版本号一致。这两项在 CI 里对每次 push 自动执行（见上方徽章）。
 
 ---
 
@@ -177,7 +178,7 @@ cd ~/.claude/skills/vibecoding-navigator && git pull
 > 流程类文档最大的风险是**文档里说有、实际跑不起来**。本仓库的执行标准：所有推荐的命令和流程都经过真实执行。
 
 - ✅ **CI 自动门禁**：每次 push / PR 自动跑路由测试 + 版本一致性检查 + `gate.sh` 语法校验（`.github/workflows/routing-tests.yml`）——本 skill 铁律"CI 回归：不想起来才跑"先约束自己
-- ✅ **路由测试**：15/15 PASS（执行器首跑即抓到一处真实路由漂移并修复，记录在 CHANGELOG v2.2.0）
+- ✅ **路由测试**：16/16 PASS（执行器首跑即抓到一处真实路由漂移并修复，记录在 CHANGELOG v2.2.0）
 - ✅ **冒烟验证**：用零依赖 todo app 真跑 `gate.sh`，首跑 FAIL 2 → 修复 → PASS 6 | WARN 2 | FAIL 0，全程记录在案
 - ✅ **文档命令保鲜**：连"文档推荐的命令自己过期"这种事都抓到过——Node 22 起 `node --test tests/` 语义变化导致的坑，已写进 quickstart 卡点表
 - ✅ **版本纪律**：`VERSION` / `SKILL.md` frontmatter / `CHANGELOG.md` 三处版本号由 `tests/check-version.py` 强制一致，不再靠人工核对
@@ -194,6 +195,7 @@ cd ~/.claude/skills/vibecoding-navigator && git pull
 | Java / Spring / Spring Boot / Maven / MyBatis / JPA / JUnit | `specialists/java-spring/` |
 | Vue / Vue 3 / Vite / Pinia / Element Plus / Vue Router | `specialists/vue3/` |
 | React / Next.js / Vercel | `specialists/web-react/` |
+| UI 打磨 / 圆角 / 阴影 / 动效 / 字体排印 / 配色精细 / 视觉评审 | `specialists/ui-polish/`（vendor better-* 工艺 pack 的 router） |
 | 部署 / CI / 域名 / SSL / 回滚 / 监控 / 日志 / 备份 | `specialists/deploy-ops/` |
 
 > 技术栈专家只回答"怎么写"，不回答"做什么"和"做到哪算完"——后者是三段流程的领地。每个 specialist 头部带 `contract` 契约块，派工前先读契约再派工。
@@ -204,6 +206,7 @@ cd ~/.claude/skills/vibecoding-navigator && git pull
 
 | 版本 | 主题 |
 |---|---|
+| **v2.6.0** | 修两个真实翻车点：UI 设计基线（治"白得发光没设计感"）+ 库表设计基线（治"无脑 SQLite"）+ vendor better-* 家族成 ui-polish 工艺 pack，形成"底线 + 工艺"两层防线 |
 | **v2.5.0** | 新增 Vue 3 前端专家：组合式 API、Pinia 边界、Element Plus 按需引入、history 模式 nginx fallback、VITE_ 变量不进客户端包 |
 | **v2.4.0** | 新增 Java/Spring Boot 专家：分层铁律、构造器注入、事务三条高压线、Flyway 迁移、JPA N+1、四层测试，Java 项目不再走兜底 |
 | **v2.3.1** | 仓库工程化：CI 自动门禁、MIT LICENSE、版本一致性检查、git 安装/升级机制 |

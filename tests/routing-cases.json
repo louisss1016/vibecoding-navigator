@@ -73,5 +73,10 @@
     "id": "J",
     "prompt": "接盘一个别人的 Node 项目，先帮我看看现在怎么跑的",
     "expected": ["brownfield-recon", "ts-react-electron/fullstack-desktop"]
+  },
+  {
+    "id": "P",
+    "prompt": "这个页面太素了，帮我打磨到产品相：圆角、间距、动效、配色都不对",
+    "expected": ["ui-polish"]
   }
 ]

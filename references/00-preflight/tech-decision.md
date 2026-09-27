@@ -40,15 +40,16 @@ B 方案最强理由：
 
 **MVP 阶段默认**：除非用户明确会某个框架，否则选他已经会的那个，不要学新的。
 
-### 数据库：文件 vs SQLite vs PostgreSQL
+### 数据库：文件 vs SQLite vs PostgreSQL / MySQL
 
 | 数据量/查询复杂度 | 选哪个 |
 |---|---|
 | 就存几条记录，不需要查 | JSON 文件 |
-| 单用户、本地、简单查询 | SQLite |
+| 演示/教程、本地单机工具、桌面应用内嵌数据 | SQLite |
 | 多用户、复杂查询、需要并发 | PostgreSQL |
+| 团队已熟 MySQL / 生态绑定国内云 | MySQL |
 
-**MVP 阶段默认**：SQLite。文件数据库够简单，后面真要换 PostgreSQL 再迁，不要一开始就上重的。
+**选型判定看项目性质，不看省事程度**：SQLite 是 demo 和本地单机工具的正解，**不是真实项目的"MVP 默认"**——真实项目（多用户、要上线、数据要长存）直接上 PostgreSQL/MySQL，SQLite 的并发、备份、运维生态三项都弱，迁移不是改连接串那么简单。库表怎么设计（ER、命名、索引、迁移）见 `data-modeling.md`。
 
 ### 部署：本地 vs Vercel/Netlify vs 自己服务器
 
@@ -114,7 +115,7 @@ B 方案最强理由：
 ```
 前端：React 18 + Vite
 后端：Node.js + Express
-数据库：SQLite
+数据库：PostgreSQL（真实项目，多用户并发）
 部署：本地 Electron
 为什么这样选：[一句话理由]
 备选方案：[如果以后要换，换什么]

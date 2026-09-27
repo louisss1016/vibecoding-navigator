@@ -73,6 +73,8 @@ contract:
 
 ## 数据库（JPA / MyBatis）
 
+表结构设计（ER 梳理、命名规范、索引策略、迁移纪律）见 `references/00-preflight/data-modeling.md`——建表前先过那五问，别代码写着写着随手加字段。
+
 - 连接池用 HikariCP（Spring Boot 默认），`maximum-pool-size` 按数据库实际承载配，别抄网上的 50。
 - schema 变更走 Flyway/Liquibase 迁移脚本，**不许手改已上线库的表结构**；`ddl-auto: update` 只允许本地开发，生产必须是 `validate` 或 `none`。
 - JPA 的 N+1：默认 LAZY 加载在循环里逐条查。用 `JOIN FETCH` 或 `@EntityGraph` 一次捞，或按 id 批量 `findAllById` 再内存组装。

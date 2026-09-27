@@ -60,9 +60,11 @@ contract:
 - 数据库 session 用 `Depends(get_db)`，路由函数不自己开 session。
 - 配置从 `app/config.py` 读，路由里不直接 `os.environ`。
 
-## 数据库（SQLAlchemy + SQLite）
+## 数据库（SQLAlchemy）
 
-- `db.py` 里创建 engine 时加 `connect_args={"check_same_thread": False}`（SQLite + 多线程必需）。
+**选型边界**：SQLite 只适合演示/本地单机工具；真实项目（多用户、要上线）直接 PostgreSQL，换库不是改连接串——并发模型、类型严格度、备份全不同。表怎么设计（ER、命名、索引、迁移策略）见 `references/00-preflight/data-modeling.md`。
+
+- SQLite 多线程场景：`db.py` 里创建 engine 时加 `connect_args={"check_same_thread": False}`。
 - session 用 `yield` 的依赖，请求结束自动 close；长任务不用请求级 session。
 - schema 变更走迁移工具（alembic），**不许手改已上线库的表结构**；SQLite 用 alembic 同样支持。
 - 查询用 ORM，复杂统计可以 text() 裸 SQL，但**参数必须绑定**，禁止 f-string 拼 SQL。

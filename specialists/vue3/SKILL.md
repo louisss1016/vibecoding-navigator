@@ -65,6 +65,14 @@ contract:
 - 表单：`el-form` + `rules` 声明式校验，别手写一堆 if-else 判断。
 - 表格：`el-table` 数据量大时用后端分页，别一次拉全表前端分页。
 
+## 样式与设计
+
+**先过设计底线再写样式**：`references/00-preflight/ui-design-baseline.md`（字号阶梯/间距节奏/色彩 token/布局层级）是每个前端切片的验收项；要打磨到产品相（同心圆角、光学对齐、精确动效、字体工艺），派工单挂 `specialists/ui-polish/`。
+
+- Element Plus 支持主题定制：**别直接用它默认的亮蓝色**——那是"demo 相"最重的信号。项目要么定制主色（CSS 变量覆盖 `--el-color-primary` 一族），要么明确接受默认并写进 ARCHITECTURE。
+- 颜色/间距走 token（SCSS 变量或 CSS 变量），不散落魔法数字；背景别用纯白 `#fff`、文字别用纯黑 `#000`。
+- `scoped` 样式管组件私有，全局变量/混入放 `styles/`；深色模式 MVP 可以不做，token 先留好。
+
 ## 路由（Vue Router 4）
 
 - history 模式；权限路由在导航守卫里集中拦（登录态 + 角色），别在每个页面组件里各判一遍。

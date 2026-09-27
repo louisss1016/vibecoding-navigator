@@ -15,15 +15,19 @@
 | React（纯 Web）/ Next.js / Vercel / 浏览器前端 | `specialists/web-react/` | `specialists/web-react/SKILL.md` |
 | Vue / Vue 3 / Vite / Pinia / Element Plus / Vue Router / Vitest | `specialists/vue3/` | `specialists/vue3/SKILL.md` |
 | SQLite / 数据库 schema / 查询 / 索引 | 看项目主栈：TS 项目 → ts-react-electron pack（sql-pro）；Python 项目 → `specialists/python-fastapi/`；Java 项目 → `specialists/java-spring/` | 对应 SKILL.md |
+| 库表设计 / ER / 建表规范 / 索引 / 数据迁移 / 数据库选型 | `references/00-preflight/data-modeling.md`（跨栈库表设计基线，不是技术专家；SQLite/PG/MySQL 方言细节再按主栈路由到上面的专家） | 同左 |
 | Playwright / E2E / 视觉测试 | ts-react-electron pack（playwright-expert） | `specialists/ts-react-electron/skills/fullstack-desktop/SKILL.md` |
 | Python / FastAPI / uvicorn / Pydantic | `specialists/python-fastapi/` | `specialists/python-fastapi/SKILL.md` |
 | pytest / Python 测试 | `specialists/python-fastapi/` | `specialists/python-fastapi/SKILL.md` |
 | Java / Spring / Spring Boot / Maven / Gradle / MyBatis / JPA / JUnit | `specialists/java-spring/` | `specialists/java-spring/SKILL.md` |
 | 部署 / CI / CD / 域名 / SSL / 上线 / 回滚 / 监控 / 日志 / 备份 | `specialists/deploy-ops/` | `specialists/deploy-ops/SKILL.md` |
-| 前端视觉方向 / UI 设计 / 组件样式 | ts-react-electron pack（frontend-design，runtime-only） | `specialists/ts-react-electron/skills/fullstack-desktop/SKILL.md` |
+| 前端视觉方向 / UI 设计 / 组件样式 / 排版 / 设计感 / 页面太素 | `references/00-preflight/ui-design-baseline.md`（跨栈设计基线，不是技术专家；具体栈的写法再按主栈路由到上面的专家） | 同左 |
+| UI 打磨 / 圆角 / 阴影 / 动效 / 图标 / 字体排印 / 配色精细 / 视觉评审 | `specialists/ui-polish/`（router，vendor better-* 工艺 pack 的入口） | `specialists/ui-polish/SKILL.md` |
 | 接盘已有代码库 / 存量改造 / "不知道现在怎么跑的" | `references/00-preflight/brownfield-recon.md`（前期侦察流程，不是技术专家；侦察完按项目主栈再路由到上面的专家） | 同左 |
 
 **关于 ts-react-electron**：它不是一个单独的 SKILL.md，而是一个完整的可安装 skill pack（自带 install.sh / manifest / vendor）。派工给子 agent 时，入口是 `skills/fullstack-desktop/SKILL.md` 这个 router，由它再路由到 pack 内的具体专家。
+
+**关于 ui-polish**：它也不是技术栈专家，而是一个工艺精度 pack——router `SKILL.md` 持有契约，`vendor/` 下是 better-ui / better-typography / better-colors / better-layout / better-accessibility / better-interface 六个外部 skill（上游 jakubkrehel/skills，MIT 许可，保留 LICENSE 与归属声明）。设计"底线性"问题（白得发光、没排版、没视觉主角）先过 `references/00-preflight/ui-design-baseline.md`；"打磨到产品相"（圆角、阴影、动效、字体、配色的精确数值）派 ui-polish。两层是递进关系，不是二选一。
 
 ## 怎么判断路由
 

@@ -20,7 +20,7 @@
 | Java 后端 | java-spring | Spring Boot 分层与依赖注入、Controller/Service/Repository 边界、事务怎么划、JPA/MyBatis 用法、JUnit 测试组织 | 流程对不对、前端与部署 |
 | Vue 前端 | vue3 | Vue 3 SFC 与组合式 API、组件通信、Pinia 状态管理、Vue Router、Element Plus 用法、Vitest 测试组织 | 流程对不对、后端与部署 |
 | 测试 | 技术专家 | 怎么写测试 | 测什么业务场景 |
-| UI 视觉 | ts-react-electron pack 内的 frontend-design（runtime-only） | 颜色、布局、视觉方向、组件样式 | 业务逻辑 |
+| UI 视觉 | `references/00-preflight/ui-design-baseline.md`（跨栈设计基线） | 字号阶梯、间距节奏、色彩 token、布局层级、组件完成度底线 | 具体框架的写法（归各栈专家）、视觉素材制作 |
 | 渲染性能 | ts-react-electron pack 内的 vercel-react-best-practices（Web React 场景归 web-react） | 渲染行为、bundle 性能 | 视觉方向本身 |
 | 业务逻辑 | 主 skill + 用户 | 业务规则是什么 | 代码怎么写 |
 | 部署 | deploy-ops | 怎么打包、怎么上线、怎么回滚 | 上线后监控归谁（见下） |

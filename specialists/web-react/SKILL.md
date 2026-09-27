@@ -67,9 +67,11 @@ SPA 形态把 `app/` 换成 `src/`，入口 `src/main.tsx`，路由用 react-rou
 
 ## 样式
 
+**先过设计底线再写样式**：`references/00-preflight/ui-design-baseline.md`（字号阶梯/间距节奏/色彩 token/布局层级）是每个前端切片的验收项；要打磨到产品相（同心圆角、光学对齐、精确动效、字体工艺），派工单挂 `specialists/ui-polish/`。底线不过打回，别交出"白底 + 默认字号"的 demo 相。
+
 - 默认 Tailwind（最快、和 Vercel 生态最配）；复杂设计系统再考虑 CSS Modules。
-- 颜色/间距用设计 token，不散落魔法数字。
-- 深色模式等"待验证假设"功能，MVP 阶段不做（见 PROJECT.md 的假设清单）。
+- 颜色/间距用设计 token（Tailwind config / CSS 变量），不散落魔法数字；背景别用纯白 `#fff`、文字别用纯黑 `#000`。
+- 深色模式等"待验证假设"功能，MVP 阶段不做（见 PROJECT.md 的假设清单）——但 token 要先留好。
 
 ## 部署（Vercel）
 

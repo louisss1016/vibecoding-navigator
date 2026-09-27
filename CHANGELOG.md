@@ -2,6 +2,37 @@
 
 本文件记录 vibecoding-navigator 的结构性变更。版本号与 `VERSION` 文件、主 SKILL.md frontmatter 保持一致。
 
+## [2.6.0] — 2026-09-26
+
+主题：**修两个真实翻车点——UI 白得发光、库表只会 SQLite**。v2.5.0 之后用本 skill 实跑了一个项目，暴露出两类结构性问题：一是做出来的页面"特别白、单一简洁、完全没有设计感"，根因是设计知识只有一处虚引用（frontend-design 指向不存在的 skill-template），specialist 层没有任何设计指导，模板也不含设计维度；二是 vibe 项目无脑 SQLite，根因是 tech-decision 明写"MVP 阶段默认 SQLite"，库表知识锁死在 TS pack 里，其他栈够不着。本版本把两个问题各补一条跨栈基线，并把外部 better-* 家族以 MIT 许可 vendor 成 ui-polish 工艺 pack，形成"底线 + 工艺"两层防线。minor bump。
+
+### 新增
+
+- `references/00-preflight/ui-design-baseline.md`：跨栈 UI 设计基线（不是技术专家）。前半拆 AI 白页三根因（Tailwind 默认无样式 / AI 保守抄官网模板 / 需求里没写设计要求），后半给设计基线五节：字号阶梯四档表、间距 4 的倍数、色彩中性色带色相 + 主色唯一 + 语义四件套、布局视觉主角、组件四态。附反面模式 7 条 + 切片前最小检查 5 条。
+- `references/00-preflight/data-modeling.md`：跨栈库表设计基线（不是技术专家）。数据库选型表（SQLite 只适合 demo / 本地单机 / 嵌入式，真实项目直接 PostgreSQL / MySQL——迁移不是改连接串）、迁移触发信号 5 条、建表五问（用户故事倒推实体 / 关系先画 / 命名规范 / 索引跟查询走 / 迁移从第一天）、常见错误 7 条（大宽表、逗号分隔 id、float 存钱等）。
+- `specialists/ui-polish/`：UI 工艺精度 pack。router `SKILL.md` 持契约块与内部路由表（圆角/阴影/动效/图标 → better-ui，字体 → better-typography，色彩 → better-colors，布局 → better-layout，可访问性 → better-accessibility，评审 → better-interface）；`vendor/` 下 34 个文件来自上游 jakubkrehel/skills（MIT 许可，保留 LICENSE 与归属声明）。与 ui-design-baseline 是递进关系：基线回答"什么是合格的"，pack 回答"怎么打磨到产品相"。
+
+### 变更
+
+- `docs/stack-routing.md`：路由表新增 UI 打磨行（UI 打磨 / 圆角 / 阴影 / 动效 / 字体排印 / 配色精细 / 视觉评审 → `specialists/ui-polish/`）；原 frontend-design 虚引用行改为指向 `ui-design-baseline.md`；表后新增"关于 ui-polish"说明段（pack 结构 + 两层递进关系）
+- 主 `SKILL.md` 技术栈专家摘要表：同步加 ui-polish 行（防路由漂移要求两处同时出现）
+- `docs/ownership-matrix.md`：UI 视觉行改为 ui-design-baseline（修虚引用）
+- `tests/routing-cases.json`：新增用例 P（页面太素要打磨到产品相），路由用例 15 → 16 条
+- `references/00-preflight/tech-decision.md`：数据库节从"MVP 阶段默认 SQLite"改为看项目性质的条件化判定，选型示例改 PostgreSQL
+- `references/00-preflight/templates/ARCHITECTURE.md.tmpl`：关键决策示例改 PostgreSQL；自检"十问"改"十一问"（新增第 7 问 UI 设计约束，数据库问指向 data-modeling.md）
+- `specialists/web-react/SKILL.md`：样式节重写，指向 ui-design-baseline + ui-polish，明确"背景别用纯白、文字别用纯黑"
+- `specialists/vue3/SKILL.md`：新增"样式与设计"节（Element Plus 默认亮蓝色 demo 相警告 + design token 指引）
+- `specialists/python-fastapi/SKILL.md`：数据库节改题"SQLAlchemy"，加 SQLite 选型边界 + data-modeling 指针
+- `specialists/java-spring/SKILL.md`：数据库节加 data-modeling 指针（建表前先过五问）
+- `README.md`：specialist 计数 7 → 8、references 计数 20 → 22、files 徽章更新、路由表补 ui-polish 行、路由测试 15 → 16 条、版本演进表补本行
+
+### 说明
+
+- 本版本为 minor：修复两处质量缺口，主 SKILL.md 铁律与流程零变更。
+- 路由测试执行器本地回归 16/16 PASS，specialist 覆盖检查确认 ui-polish 已被用例 P 覆盖。
+- vendor 合规前提：上游仓库 jakubkrehel/skills 已确认 MIT 许可（API 校验），34 个 vendor 文件保留 LICENSE 与归属声明；排除 better-writing 与 agents/openai.yaml（与本 pack 工艺精度定位无关）。
+- specialists 至 8 个、references 至 22 篇；UI 与库表两条跨栈基线从此不再是某个栈的私藏。
+
 ## [2.5.0] — 2026-09-26
 
 主题：**补上 Vue 3 前端专家**。继 v2.4.0 补 Java 后，同一自查逻辑的延续：Vue 是国内业务系统（管理后台、网批、全渠道中台类）的第一大前端栈，而 specialists 里只有 React 阵营（web-react / ts-react-electron），Vue 项目此前只能走"专家还没写"的兜底。Vue 3 与 Vue 2 差异巨大（组合式 API、Vite、Pinia vs Vuex），专家命名直接带 `vue3`，防止误路由到 Vue 2 项目。minor bump。
